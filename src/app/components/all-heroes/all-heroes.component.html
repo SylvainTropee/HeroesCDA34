@@ -1,0 +1,28 @@
+<div>
+  <button (click)="addHeroes()">Charger les héros</button>
+</div>
+<div class="heroes-list">
+  <!--  old school-->
+  <!--  <a *ngFor="let hero of heroes">-->
+  <!--    <img src="" alt="{{ hero.name }}">-->
+  <!--  </a>-->
+
+  <!--  version >= A17-->
+  @for (hero of heroes; track $index) {
+    <a>
+      <img [src]="hero.image" alt="{{ hero.name }}">
+    </a>
+  }
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
