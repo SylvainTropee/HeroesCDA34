@@ -24,6 +24,7 @@ export class AllHeroesComponent {
 
   constructor(private heroService: HeroApiService) {
     this.heroes = []
+    this.addHeroes()
   }
 
   addHeroes() {
