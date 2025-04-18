@@ -1,9 +1,20 @@
 @if (hero$ | async; as hero) {
-  <div class="hero-detail">
+  <div class="grid items-center justify-items-center p-4 h-screen">
+    <img class="rounded-3xl h-96" [src]="hero.images.sm" [alt]="hero.name">
     <div>
-      <div class="text-center text-4xl">{{ hero.name }}</div>
-      <img [src]="hero.images.sm" [alt]="hero.name">
+      <div class="font-bold text-center border border-white p-2 mb-2">{{ hero.name }}</div>
+      <div>
+        <div class="ml-6 text-center">{{ hero.biography.fullName }}</div>
+        <div class="ml-6 text-center">{{ hero.biography.aliases.join(" / ") }}</div>
+      </div>
+      <ul class="list-disc list-inside">
+        <li class="ml-6">Intelligence : {{ hero.powerstats.intelligence }}</li>
+        <li class="ml-6">Force : {{ hero.powerstats.strength }}</li>
+        <li class="ml-6">Vitesse : {{ hero.powerstats.speed }}</li>
+        <li class="ml-6">Puissance : {{ hero.powerstats.power }}</li>
+        <li class="ml-6">Combat : {{ hero.powerstats.combat }}</li>
+        <li class="ml-6">Endurance : {{ hero.powerstats.durability }}</li>
+      </ul>
     </div>
   </div>
 }
-
