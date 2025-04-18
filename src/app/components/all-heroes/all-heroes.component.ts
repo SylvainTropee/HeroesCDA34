@@ -1,34 +1,31 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {JsonPipe, NgForOf} from "@angular/common";
 import {Hero} from "../../models/hero";
+import {RouterLink} from "@angular/router";
+import {HeroApiService} from "../../services/hero-api.service";
 
 @Component({
   selector: 'app-all-heroes',
   standalone: true,
   imports: [
     JsonPipe,
-    NgForOf
+    NgForOf,
+    RouterLink
   ],
   templateUrl: './all-heroes.component.html',
   styleUrl: './all-heroes.component.css'
 })
 export class AllHeroesComponent {
 
-  public heroes : Array<Hero> //any[]
+  public heroes: Array<Hero> //any[]
 
-  constructor() {
+  constructor(private heroService : HeroApiService) {
     this.heroes = []
   }
 
   addHeroes() {
-    this.heroes.push({name : "Hulk", image : "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/332-hulk.jpg"})
-    this.heroes.push({name : "Thor", image : "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/659-thor.jpg"})
-    this.heroes.push({name : "Joker", image : "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/370-joker.jpg"})
+    this.heroes = this.heroService.getHeroes()
   }
-
-
-
-
 
 
 }
