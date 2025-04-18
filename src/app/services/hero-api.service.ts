@@ -1,39 +1,27 @@
 import {Injectable} from '@angular/core';
 import {Hero} from "../models/hero";
+import {HttpClient} from "@angular/common/http";
+import {map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroApiService {
 
-  public heroes: Array<Hero>
+  private readonly BASE_URL: string = "https://akabab.github.io/superhero-api/api"
 
-  constructor() {
-    this.heroes = []
-    this.heroes.push({
-      id: 1,
-      name: "Hulk",
-      image: "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/332-hulk.jpg"
-    })
-    this.heroes.push({
-      id: 2,
-      name: "Thor",
-      image: "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/659-thor.jpg"
-    })
-    this.heroes.push({
-      id: 3,
-      name: "Joker",
-      image: "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/370-joker.jpg"
-    })
+  constructor(private http: HttpClient) {
   }
 
-  public getHeroes(): Hero[] {
-    return this.heroes
+  public getHeroes(): Observable<Hero[]> {
+    return this.http.get<Hero[]>(`${this.BASE_URL}/all.json`)
   }
 
-  public getHeroById(id: number) : Hero | undefined {
-    return this.heroes.find(
-      (hero : Hero) : boolean => hero.id == id)
+  public getHeroById(id: number): Observable<Hero> | undefined {
+    return this.http.get<Hero>(`${this.BASE_URL}/id/${id}.json`)
+    // return this.http.get<{appearance : {gender : string, race : string}}>(`${this.BASE_URL}/id/${id}.json`).pipe(
+    //   map(response => response.appearance)
+    // )
   }
 
 

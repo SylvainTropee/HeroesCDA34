@@ -1,5 +1,7 @@
 export interface Hero {
   id : number
   name : string
-  image : string
+  images : {
+    sm : string
+  }
 }

@@ -1,1 +1,9 @@
-<p>Soon les infos du héros {{ id }}</p>
+@if (hero$ | async; as hero) {
+  <div class="hero-detail">
+    <div>
+      <div class="text-center text-4xl">{{ hero.name }}</div>
+      <img [src]="hero.images.sm" [alt]="hero.name">
+    </div>
+  </div>
+}
+

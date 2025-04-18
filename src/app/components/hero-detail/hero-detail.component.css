@@ -1,0 +1,7 @@
+.hero-detail{
+  @apply flex justify-center
+}
+
+.hero-detail img{
+  @apply rounded-3xl object-fill h-96
+}
